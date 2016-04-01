@@ -1,0 +1,27 @@
+{
+  "name": "fixed-header",
+  "version": "1.0.0",
+  "description": "Fix your header easily with a range of different configurations",
+  "main": "dist/fixed-header.js",
+  "jsnext:main": "src/main.js",
+  "scripts": {
+    "clean:dist": "rm -rf ./dist",
+    "clean:demo": "rm -f ./demo/fixed-header.js",
+    "scripts:bundle": "rollup -c rollup.config.js",
+    "build": "npm run all clean:* --parallel scripts:*",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:js": "watchman ./src \"npm run scripts:bundle\"",
+    "start": "npm-run-all clean:* --parallel scripts:* watch:* server:*",
+    "server:browser-sync": "browser-sync start --server --index='demo.html' --files='dist/*.js *.tml'"
+  },
+  "author": "danjford",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^1.1.1",
+    "browser-sync": "^2.11.2",
+    "npm-run-all": "^1.7.0",
+    "rollup": "^0.25.7",
+    "rollup-plugin-babel": "^2.4.0",
+    "watchman": "^0.1.8"
+  }
+}

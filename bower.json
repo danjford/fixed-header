@@ -2,7 +2,7 @@
   "name": "fixed-header",
   "version": "1.0.0",
   "authors": [
-    "danjford <forddj93@gmail.com>"
+    "danjford"
   ],
   "description": "Fix your header easily with a range of different configurations",
   "main": "dist/fixed-header.js",
@@ -12,7 +12,6 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests",
-    "demo"
+    "tests"
   ]
 }

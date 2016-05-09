@@ -1,18 +1,3 @@
-export function setupEvent() {
-
-  const conf = this.config;
-
-  this.instance = {
-    isAbsolute: true,
-    previousScroll: getScrollTop('body'),
-    element: typeof conf.element === 'string' ? document.querySelector( conf.element ) : conf.element
-  };
-
-  document.addEventListener( 'scroll', scrollEvent.bind(this) );
-  document.addEventListener( 'touchmove', scrollEvent.bind(this) );
-
-}
-
 // Getting the scroll top of the passed string element i.e. wouldn't work if you had multiple header elements in the page.
 const getScrollTop = (el) => {
   return document.querySelector(el).scrollTop;
@@ -58,3 +43,18 @@ function scrollEvent(e) {
   this.instance.previousScroll = newScroll;
 
 };
+
+export function setupEvent() {
+
+  const conf = this.config;
+
+  this.instance = {
+    isAbsolute: true,
+    previousScroll: getScrollTop('body'),
+    element: typeof conf.element === 'string' ? document.querySelector( conf.element ) : conf.element
+  };
+
+  document.addEventListener( 'scroll', scrollEvent.bind(this) );
+  document.addEventListener( 'touchmove', scrollEvent.bind(this) );
+
+}

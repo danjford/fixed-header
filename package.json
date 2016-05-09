@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch:js": "watchman ./src \"npm run scripts:bundle\"",
     "start": "npm-run-all clean:* --parallel scripts:* watch:* server:*",
-    "server:browser-sync": "browser-sync start --server --index='index.html' --files='dist/*.js *.html'"
+    "server:browser-sync": "browser-sync start --server --index='index.html' --no-notify --files='dist/*.js *.html'"
   },
   "author": "danjford",
   "license": "MIT",

@@ -1,5 +1,5 @@
-import defaults from './config';
-import { setupEvent } from './events'
+import { defaultConfig } from './config';
+import { setupScrollEvent, setupEvents } from './events'
 import { deepExtend } from './utils';
 
 /**
@@ -9,9 +9,10 @@ import { deepExtend } from './utils';
  */
 function FixedHeader( options ) {
 
-  this.config = options ? deepExtend( defaults, options ) : defaults;
+  this.config = options ? deepExtend( defaultConfig, options ) : defaultConfig;
   this.instance = {};
-  setupEvent.call( this );
+  setupEvents.call( this );
+  setupScrollEvent.call( this );
 
 };
 
@@ -22,10 +23,7 @@ function FixedHeader( options ) {
   options: {
     fixedClass: String,
     useStyles: true, // default
-    stickToElement: String or Element,
-    smaller: { // For smaller screens
-      viewport: 500 // Viewport to trigger
-    }
+    stickToElement: String or Element
   }
 */
 

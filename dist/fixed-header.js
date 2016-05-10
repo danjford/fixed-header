@@ -14,7 +14,7 @@
 
   // Getting the scroll top of the passed string element i.e. wouldn't work if you had multiple header elements in the page.
   var getScrollTop = function getScrollTop(el) {
-    return document.querySelector(el).scrollTop;
+    return document.querySelector(el).scrollTop || document.documentElement.scrollTop;
   };
 
   /**

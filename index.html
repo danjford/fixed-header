@@ -78,7 +78,15 @@
   <script type="text/javascript" src="dist/fixed-header.js"></script>
   <script type="text/javascript">
 
-    var hello = new FixedHeader({ element: '.fixed-header' });
+    var hello = new FixedHeader({ element: '.fixed-header', 'minWidth': 500, 'maxWidth': 1000 });
+
+    hello.onMinWidth(function() {
+      console.log('min width!');
+    });
+
+    hello.onMaxWidth(function() {
+      console.log('max width!');
+    });
 
   </script>
 </body>

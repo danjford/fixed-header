@@ -1,6 +1,6 @@
 {
   "name": "fixed-header",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Fix your header easily with a range of different configurations",
   "main": "dist/fixed-header.js",
   "jsnext:main": "src/main.js",

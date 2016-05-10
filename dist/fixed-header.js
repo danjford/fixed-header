@@ -21,16 +21,17 @@
    * Checks if the configured minWidth or the maxWidth has been exceeded and
    * calls the relevant events
    * @param  {Object} _this, the configured instace of FixedHeader
+   * @param  {Object} event, the scroll event object
    * @return {Boolean}, whether or not a bound has been exceeded
    */
-  var boundsExceeded = function boundsExceeded(_this) {
+  var boundsExceeded = function boundsExceeded(_this, event) {
 
     var windowWidth = window.innerWidth,
         minExceeded = _this.config.minWidth !== null && windowWidth < _this.config.minWidth,
         maxExceeded = _this.config.maxWidth !== null && windowWidth > _this.config.maxWidth;
 
-    if (maxExceeded && typeof _this.instance.maxWidthEvent === 'function') _this.instance.maxWidthEvent.call(_this);
-    if (minExceeded && typeof _this.instance.minWidthEvent === 'function') _this.instance.minWidthEvent.call(_this);
+    if (maxExceeded && typeof _this.instance.maxWidthEvent === 'function') _this.instance.maxWidthEvent.call(_this, event);
+    if (minExceeded && typeof _this.instance.minWidthEvent === 'function') _this.instance.minWidthEvent.call(_this, event);
 
     return minExceeded || maxExceeded;
   };
@@ -38,15 +39,15 @@
   /**
    * The event which is called on scroll which switched the header between it's normal styling
    * and the fixed styling.
-   * @param  {[type]} e [description]
-   * @return {[type]}   [description]
+   * @param  {Object} e, the event object
+   * @return {Void}, nothing is returned
    */
   function scrollEvent(e) {
 
     var header = this.instance.element;
 
     // If the bounds are exceeded, cancel!
-    if (boundsExceeded(this)) return;
+    if (boundsExceeded(this, e)) return;
 
     var isAbsolute = this.instance.isAbsolute,
         previousScroll = this.instance.previousScroll;
@@ -81,6 +82,10 @@
     this.instance.previousScroll = newScroll;
   };
 
+  /**
+   * Sets up the called instance with default configs and sets up the scroll and touch events
+   * @return {Void}, nothing is returned
+   */
   function setupScrollEvent() {
 
     var conf = this.config;
@@ -95,6 +100,10 @@
     document.addEventListener('touchmove', scrollEvent.bind(this));
   }
 
+  /**
+   * Sets up the events on the object such as onMaxWidth or onMinWidth
+   * @return {Void}, nothing is returned
+   */
   function setupEvents() {
 
     for (var key in eventConfig) {
@@ -103,10 +112,20 @@
     }
   }
 
+  /**
+   * Used by the user to set up their maxWidthEvent
+   * @param  {Function} callback, the function they want called.
+   * @return {Void}, nothing is returned
+   */
   function onMaxWidth(callback) {
     if (typeof callback === 'function') this.instance.maxWidthEvent = callback;
   }
 
+  /**
+   * Used by the user to set up their minWidthEvent
+   * @param  {Function} callback, the function they want called.
+   * @return {Void}, nothing is returned
+   */
   function onMinWidth(callback) {
     if (typeof callback === 'function') this.instance.minWidthEvent = callback;
   }
